@@ -1,5 +1,6 @@
 package br.com.caelum.jdbc.teste;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -21,15 +22,16 @@ public class TesteJdbc {
 			System.out.println("Nome: "+con.getNome());
 			System.out.println("Email :"+ con.getEmail());
 			System.out.println("Endereco: "+con.getEndereco());
-			System.out.println("Data de Nascimento: "+con.getDataNascimento().getTime()+"\n");
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			
+			System.out.println("Data de Nascimento: "+sdf.format(con.getDataNascimento().getTime())+"\n");
 			
 			
 		}
 		
 	}
 		
-		
-	
 	
 	
 }
