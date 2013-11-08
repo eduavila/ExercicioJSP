@@ -1,8 +1,10 @@
 package br.com.caelum.jdbc.teste;
 
-import br.com.caelum.jdbc.*;
+import java.util.Calendar;
+import java.util.List;
 
-import java.sql.*;
+import br.com.caelum.jdbc.dao.ContatoDao;
+import br.com.caelum.jdbc.modelo.Contato;
 
 public class TesteJdbc {
 	
@@ -10,19 +12,19 @@ public class TesteJdbc {
 	public static void main(String[] args){
 		
 		
-		try {
-			System.out.println("Iniciando conexao....");
-			
-			Connection  conexao=new  ConnectionFactory().getConnection();
-			
-			System.out.println("Conexao Inciada : "+ conexao.toString());
-			
-			conexao.close();
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}
+		ContatoDao contato = new ContatoDao();
 		
+		List<Contato> contatos  = contato.getLista();
+		
+		for(Contato con:contatos){
+			
+			System.out.println("Nome: "+con.getNome());
+			System.out.println("Email :"+ con.getEmail());
+			System.out.println("Endereco: "+con.getEndereco());
+			System.out.println("Data de Nascimento: "+con.getDataNascimento().getTime()+"\n");
+			
+			
+		}
 		
 	}
 		
