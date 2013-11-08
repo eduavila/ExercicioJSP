@@ -102,4 +102,44 @@ public class ContatoDao {
 		}
 		
 	}
+	
+	public List<Contato> getBuscar(int id){
+		
+		try{
+			
+			List<Contato>  contatos = new ArrayList<Contato>();
+			PreparedStatement stmt = new ConnectionFactory().getConnection().prepareStatement("SELECT * FROM  Contatos WHERE ID = ?");
+			
+			
+			stmt.setInt(1, id);
+			
+			ResultSet result= stmt.executeQuery();
+			
+			while(result.next()){
+				Contato contato=new Contato();
+				
+				contato.setId(result.getLong(1));
+				contato.setNome(result.getString(2));
+				contato.setEmail(result.getString(3));
+				contato.setEndereco(result.getString(4));
+				
+				Calendar data = Calendar.getInstance();
+				data.setTime(result.getDate(5));
+				contato.setDataNascimento(data);
+				
+				
+				contatos.add(contato);
+			}
+			
+			
+			stmt.close();
+			result.close();
+			
+			return contatos;
+
+		}catch(SQLException e){
+			throw new RuntimeException(e);
+		}
+		
+	}
 }

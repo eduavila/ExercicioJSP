@@ -15,10 +15,11 @@ public class TesteJdbc {
 		
 		ContatoDao contato = new ContatoDao();
 		
-		List<Contato> contatos  = contato.getLista();
+		List<Contato> contatos  = contato.getBuscar(2);
 		
 		for(Contato con:contatos){
 			
+			System.out.println("ID:"+con.getId());
 			System.out.println("Nome: "+con.getNome());
 			System.out.println("Email :"+ con.getEmail());
 			System.out.println("Endereco: "+con.getEndereco());
@@ -29,6 +30,9 @@ public class TesteJdbc {
 			
 			
 		}
+		
+		
+		
 		
 	}
 		
